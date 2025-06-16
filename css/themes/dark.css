@@ -1,0 +1,9 @@
+.dark-mode {
+    --bg-color: #1e1e1e;
+    --text-color: #d4d4d4;
+    --text-color-muted: #888888;
+    --border-color: #333333;
+    --border-color-light: #2a2a2a;
+    --hover-color: #2a2d2e;
+    --active-color: #3f3f3f;
+}

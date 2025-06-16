@@ -1,0 +1,178 @@
+/* Basic Reset & Font */
+:root {
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --border-radius: 6px;
+    --transition-speed: 0.2s;
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    overflow: hidden;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    position: relative;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    position: relative; 
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    transition: margin-left var(--transition-speed);
+}
+
+.sidebar-header, .sidebar-footer, .search-container {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    /* No longer need to justify content as button is gone */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.note-list {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.note-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color-light);
+    user-select: none;
+}
+.note-item:hover { background-color: var(--hover-color); }
+.note-item.active { background-color: var(--active-color); }
+
+/* --- Main Content --- */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    height: 100vh;
+    min-width: 0;
+    transition: padding-left var(--transition-speed);
+}
+
+/* --- Sidebar Toggle Logic (Final Version) --- */
+body.sidebar-collapsed .sidebar {
+    margin-left: -280px;
+}
+
+/* DELETE old #toggle-sidebar-btn rule */
+
+/* NEW container for the buttons */
+.sidebar-top-controls {
+    position: absolute;
+    top: 10px;
+    /* Position it from the RIGHT edge of the sidebar */
+    left: 180px; 
+    z-index: 101;
+    display: flex;
+    gap: 6px; /* Adds space between the buttons */
+    transition: left var(--transition-speed) ease-in-out;
+}
+
+.sidebar-top-controls button {
+    margin-left: 0; /* Remove default margin */
+}
+
+/* Move the whole button group when collapsed */
+body.sidebar-collapsed .sidebar-top-controls {
+    left: 10px;
+}
+
+body.sidebar-collapsed .main-content {
+    padding-left: 55px;
+}
+
+/* --- Editor & Preview Panels --- */
+.editor-panel, .preview-panel {
+    flex: 1 1 0;
+    min-width: 150px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-header, .preview-header {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.editor-panel.disabled .ql-toolbar {
+    display: none;
+}
+
+#note-title-input {
+    flex-grow: 1;
+    font-size: 1.2rem;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
+    padding: 0.5rem;
+}
+#note-title-input:focus { outline: none; }
+#note-title-input:disabled { background-color: transparent; }
+
+.editor-container {
+    flex-grow: 1;
+    height: 100%;
+    position: relative;
+}
+
+.ql-container.ql-snow { border: none; }
+.ql-editor { height: 100%; }
+
+.preview-content {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: var(--hover-color);
+}
+
+.preview-content pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* --- Resizer --- */
+.resizer {
+    flex: 0 0 5px;
+    background-color: var(--border-color);
+    cursor: col-resize;
+    transition: background-color var(--transition-speed);
+}
+.resizer:hover { background-color: var(--active-color); }
+body.is-resizing { user-select: none; }
+
+/* --- Utility & Buttons --- */
+button {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+button:hover { background-color: var(--hover-color); }
+button:disabled { cursor: not-allowed; opacity: 0.5; }
+#new-note-btn { margin-left: 0; }
