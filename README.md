@@ -2,7 +2,7 @@
 
 A feature-rich, browser-based notes application built with vanilla HTML5, CSS3, and JavaScript. This app focuses on a user-friendly WYSIWYG (What You See Is What You Get) rich-text editing experience that generates clean Markdown code in real-time. It's perfect for users who prefer a visual editor but need Markdown output.
 
-![Screenshot of the RTF to Markdown App](placeholder.png)
+![Screenshot of the RTF to Markdown App](r2markdown.png)
 *(Replace `placeholder.png` with a real screenshot of your app!)*
 
 ---
